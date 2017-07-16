@@ -9,22 +9,22 @@ import {Items} from './Items';
 
 import {Loading} from '../components/Loading';
 
-export class Dashboard extends React.Component{
+export class Dashboard extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
             adding: false,
             loading: true,
             lists: [],
-            activeList: null 
+            activeList: null
         };
     }
-    componentDidMount(){
+    componentDidMount() {
         this.setState({loading: true});
         this.getAllLists();
     }
-    getAllLists(){
-        ApiCalls.callApiPost(apiUrls.allLists,{user_id: this.props.user._id})
+    getAllLists() {
+        ApiCalls.callApiPost(apiUrls.allLists, {user_id: this.props.user._id})
                 .then((data) => {
                     this.setState({lists: data, loading: false});
                 })
@@ -36,7 +36,7 @@ export class Dashboard extends React.Component{
     deleteList(id) {
         ApiCalls.callApiPost(apiUrls.deleteList, {list_id: id})
                 .then(() => {
-                   this.getAllLists();
+                    this.getAllLists();
                 })
                 .catch(() => {
                     this.props.error('There was an error on server.', false);
@@ -45,42 +45,42 @@ export class Dashboard extends React.Component{
     updateList(id, newDate, newShop, isAddList) {
         var url = isAddList ? apiUrls.newList : apiUrls.updateList;
         var data = {date: newDate, shop: newShop};
-        if(isAddList) {
+        if (isAddList) {
             data['user_id'] = this.props.user._id;
         }
-        if(!isAddList) {
+        if (!isAddList) {
             data['list_id'] = id;
         }
         ApiCalls.callApiPost(url, data)
                 .then(() => {
-                   this.getAllLists();
+                    this.getAllLists();
                 })
                 .catch(() => {
                     this.props.error('There was an error on server.', false);
                 });
     }
-    openList(list){
+    openList(list) {
         this.setState({activeList: list});
     }
-    closeList(){
+    closeList() {
         this.setState({activeList: null, loading: true});
         this.getAllLists();
     }
-    renderLoading(){
-        if(this.state.loading){
+    renderLoading() {
+        if (this.state.loading) {
             return <Loading />;
         }
         return null;
     }
     renderLists() {
-        if(this.state.loading || this.state.activeList){
+        if (this.state.loading || this.state.activeList) {
             return null;
         }
         return this.state.lists
                 .sort((a,b) => {
                     return moment(a.date) > moment(b.date);
                 })
-                .map((list) =>{
+                .map((list) => {
                     return (
                         <List 
                             key={list._id}
@@ -94,7 +94,7 @@ export class Dashboard extends React.Component{
                 });
     }
     renderAddList() {
-        if(this.state.loading || this.state.activeList){
+        if(this.state.loading || this.state.activeList) {
             return null;
         }
         return (
@@ -107,8 +107,8 @@ export class Dashboard extends React.Component{
             />
         );
     }
-    renderItems(){
-        if(this.state.loading || !this.state.activeList){
+    renderItems() {
+        if (this.state.loading || !this.state.activeList) {
             return null;
         }
         return (
@@ -119,7 +119,7 @@ export class Dashboard extends React.Component{
                 />
         );
     }
-    render(){
+    render() {
         return (
             <div id="dashboard-wrapper">
                 <div className="row">

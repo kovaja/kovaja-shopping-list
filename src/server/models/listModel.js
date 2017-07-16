@@ -28,7 +28,7 @@ exports.getUserLists = function (params) {
     return new Promise(function (resolve, reject) {
         List.find({'user': params.user_id})
                 .then(function (lists) {
-                    if(lists){
+                    if (lists) {
                         return Promise.resolve(lists);
                     }
                     return Promise.reject('Lists not found');
@@ -46,7 +46,7 @@ exports.addItem = function (_id, item_id) {
     return new Promise(function (resolve, reject) {
         List.findOne({'_id': _id})
                 .then(function (list) {
-                    if(list){
+                    if (list) {
                         list.items.push(item_id);
                         return list.save();
                     }
@@ -66,11 +66,11 @@ exports.deleteList = function (params) {
         List.findOne({'_id': params.list_id})
                 .populate('user')
                 .then(function (list) {
-                    if(list){
+                    if (list) {
                         var user = list.user;
                         var indexInUser = user.lists.indexOf(list._id);
 
-                        user.lists.splice(indexInUser,1);
+                        user.lists.splice(indexInUser, 1);
                         user.save();
 
                         return list.remove();

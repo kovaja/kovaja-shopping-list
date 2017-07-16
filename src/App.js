@@ -66,6 +66,35 @@ export default class App extends Component {
             error: ''
         });
     }
+    renderHeader(){
+        if(this.state.user){
+            return (
+                <div className="col-xs-12 page-header">
+                    <div className="col-xs-2 right">
+                        <h1>
+                            <span className="logout"><i onClick={this.logout.bind(this)} className="glyphicon glyphicon-off"></i></span>
+                        </h1>
+                    </div>
+                    <div className="col-xs-10">
+                        <div id="logo-small"></div>
+                        <h3>
+                            {'Lists for ' + this.state.user.name}
+                        </h3>
+                    </div>
+                </div>
+            );
+        }
+        return (
+            <div className="col-xs-12 page-header">
+                <div className="col-xs-12">
+                    <center><div id="logo"></div></center>
+                    <h3>
+                        <center>Your shopping lists</center>
+                    </h3>
+                </div>
+            </div>
+        );
+    }
     renderLoading(){
         if(this.state.loading){
             return <Loading />;
@@ -85,19 +114,7 @@ export default class App extends Component {
         return (
                 <div className="container">
                     <div className="row">
-                        <div className="col-xs-12 page-header">
-                            <div className="col-xs-12 col-md-6">
-                                <h1>
-                                    {this.state.user ? <span className="logout"><i onClick={this.logout.bind(this)} className="glyphicon glyphicon-off"></i></span> : null}
-                                </h1>
-                            </div>
-                            <div className="col-xs-12 col-md-6">
-                                <h3>
-                                    {this.state.user ? 'Lists for ' + this.state.user.name : 'Your shopping lists'}
-                                </h3>
-                            </div>
-                            
-                        </div>
+                    {this.renderHeader()}
                     </div>
                     <Error error={this.state.error} />
                     {this.renderLoading()}

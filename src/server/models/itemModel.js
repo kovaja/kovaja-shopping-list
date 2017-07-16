@@ -6,7 +6,7 @@ var listModel = require('./listModel');
 exports.newItem = function (params) {
     return new Promise(function (resolve, reject) {
         var item = new Item({
-            list: params.list_id ? params.list_id : null, 
+            list: params.list_id ? params.list_id : null,
             name: params.name ? params.name : null,
             category: params.category_id ? params.category_id : null,
             amount: params.amount ? params.amount : null
@@ -33,7 +33,7 @@ exports.deleteItem = function (params) {
                         var list = item.list;
                         var indexInList = list.items.indexOf(item._id);
 
-                        list.items.splice(indexInList,1);
+                        list.items.splice(indexInList, 1);
                         list.save();
 
                         return item.remove();
@@ -75,7 +75,7 @@ exports.getListItems = function (params) {
         Item.find({'list': params.list_id})
                 .populate('category')
                 .then(function (items) {
-                    if(items){
+                    if (items) {
                         return Promise.resolve(items);
                     }
                     return Promise.reject('Items not found');

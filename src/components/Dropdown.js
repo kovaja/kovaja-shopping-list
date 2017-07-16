@@ -3,7 +3,7 @@ import React from "react";
 export class Dropdown extends React.Component {
     render() {
         return (
-            <div className="dropdown">
+            <div className="dropdown semi-right">
                 <button className="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
                     {this.props.category}
                     <span className="caret"></span>

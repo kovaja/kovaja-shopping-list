@@ -13,11 +13,11 @@ export class Items extends React.Component {
         super(props);
         this.state = {
             loading: true,
-            items:[], 
+            items: [],
             categories: []
         };
     }
-    componentDidMount(){
+    componentDidMount() {
         ApiCalls.callApiGet(apiUrls.getCategories)
                 .then((data) => {
                     this.setState({categories: data});
@@ -37,13 +37,13 @@ export class Items extends React.Component {
                     this.props.error('There was an error on server.', false);
                 });
     }
-    updateItem(id, newName, newAmount, newCategory, isAddItem){
+    updateItem(id, newName, newAmount, newCategory, isAddItem) {
         var url = isAddItem ? apiUrls.newItem : apiUrls.updateItem;
         var data = {name: newName, category_id: newCategory._id, amount: newAmount};
-        if(isAddItem) {
+        if (isAddItem) {
             data['list_id'] = this.props.list._id;
         }
-        if(!isAddItem) {
+        if (!isAddItem) {
             data['item_id'] = id;
         }
         ApiCalls.callApiPost(url, data)
@@ -55,38 +55,38 @@ export class Items extends React.Component {
                     this.props.error('There was an error on server.', false);
                 });
     }
-    deleteItem(id){
+    deleteItem(id) {
         ApiCalls.callApiPost(apiUrls.deleteItem, {item_id: id})
                 .then(() => {
-                   this.getAllItems();
+                    this.getAllItems();
                 })
                 .catch(() => {
                     this.props.error('There was an error on server.', false);
                 });
     }
-    renderLoading(){
-        if(this.state.loading){
+    renderLoading() {
+        if (this.state.loading) {
             return <Loading />;
         }
         return null;
     }
-    renderHeading(){
-        if(this.state.loading){
+    renderHeading() {
+        if (this.state.loading) {
             return null;
         }
         return (
             <div className="panel-heading">
-                <span className="back"><i onClick={this.props.close} className="glyphicon glyphicon-chevron-left"></i></span>
-                {moment(this.props.list.date).format('YYYY/MM/DD') + ' in ' +this.props.list.shop}
+                <div className="panel-label">{moment(this.props.list.date).format('MMMM Do YYYY') + ' in ' +this.props.list.shop}</div>
+                <span className="back right"><i onClick={this.props.close} className="glyphicon glyphicon-chevron-left"></i></span>
             </div>
         );
     }
-    renderItems(){
-        if(this.state.loading || this.state.items.legth === 0){
+    renderItems() {
+        if (this.state.loading || this.state.items.legth === 0) {
             return null;
         }
         return this.state.items
-                .map((item) =>{
+                .map((item) => {
                     return (
                         <Item 
                             key={item._id}
@@ -99,8 +99,8 @@ export class Items extends React.Component {
                     );
                 });
     }
-    renderAddItem(){
-        if(this.state.loading){
+    renderAddItem() {
+        if (this.state.loading) {
             return null;
         }
         return (
@@ -114,15 +114,25 @@ export class Items extends React.Component {
             />
         );
     }
-    render() {
+        renderPanel() {
+            if (this.state.loading) {
+                return null;
+            }
         return (
             <div className="panel panel-default">
-                {this.renderLoading()}
                 {this.renderHeading()}
                 <div className="panel-body">
                     {this.renderItems()}
                     {this.renderAddItem()}
                 </div>
+            </div>
+        );
+    }
+    render() {
+        return (
+            <div>
+                {this.renderLoading()}
+                {this.renderPanel()}
             </div>
         );
     }

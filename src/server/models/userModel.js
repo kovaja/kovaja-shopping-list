@@ -35,7 +35,7 @@ exports.getOneByName = function (params) {
     return new Promise(function (resolve, reject) {
         User.findOne({'username': params.username.toLowerCase()})
                 .then(function (data) {
-                    if(!data){
+                    if (!data) {
                         return Promise.reject('user not found');
                     }
                     if (data.password === params.password) {
@@ -56,7 +56,7 @@ exports.addList = function (_id, list_id) {
     return new Promise(function (resolve, reject) {
         User.findOne({'_id': _id})
                 .then(function (user) {
-                    if(user){
+                    if (user) {
                         user.lists.push(list_id);
                         return user.save();
                     }
@@ -76,7 +76,7 @@ exports.getUserLists = function (params) {
         User.findOne({'_id': params.user_id})
                 .populate('lists')
                 .then(function (user) {
-                    if(user && user.lists){
+                    if (user && user.lists) {
                         return Promise.resolve(user.lists);
                     }
                     return Promise.reject('user not found');

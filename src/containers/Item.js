@@ -2,12 +2,12 @@ import React from "react";
 
 import {Dropdown} from '../components/Dropdown'
 
-export class Item extends React.Component{
-    constructor(props){
+export class Item extends React.Component {
+    constructor(props) {
         super(props);
         this.state = this.getClearState(props);
     }
-    getClearState(props){
+    getClearState(props) {
         return {
             updating: false,
             name: props.data.name ? props.data.name : '',
@@ -15,7 +15,7 @@ export class Item extends React.Component{
             category: props.data.category ? props.data.category : null
         };
     }
-    componentWillReceiveProps(nextProps){
+    componentWillReceiveProps(nextProps) {
         this.setState(this.getClearState(nextProps));
     }
     handleChange(event) {
@@ -29,20 +29,20 @@ export class Item extends React.Component{
             date: event
         });
     }
-    update(){
+    update() {
         this.setState({updating: true});
     }
-    updateDone(){
+    updateDone() {
         var newName = this.state.name;
         var newAmount = this.state.amount;
         var newCategory = this.state.category;
         //ADD ITEM CLICKED
-        if(this.props.isAddItem && !this.state.updating){
-            this.setState({updating:true});
+        if (this.props.isAddItem && !this.state.updating) {
+            this.setState({updating: true});
             return;
         }
         //SAME VALUES
-        if(newName === this.props.data.name &&
+        if (newName === this.props.data.name &&
                 newAmount === this.props.data.amount &&
                 newCategory._id === (this.props.data.category ? this.props.data.category._id : null))
         {
@@ -50,28 +50,28 @@ export class Item extends React.Component{
             return;
         }
         //INVALID VALUES
-        if(!newCategory){
+        if (!newCategory) {
             newCategory = {};
             this.props.categories.forEach((cat) => {
-               if(cat.name === 'others'){
-                   newCategory = cat;
-               } 
+                if (cat.name === 'others') {
+                    newCategory = cat;
+                }
             });
         }
-        if(!newName) {
-            newName = 'Something ' + (newCategory.default ? ('from '+newCategory.default) : '');
+        if (!newName) {
+            newName = 'Something';
         }
-        if(!newAmount) {
-            newAmount = 'At least a little bit';
+        if (!newAmount) {
+            newAmount = 'A little bit';
         }
         this.props.update(this.props.data._id, newName, newAmount, newCategory, this.props.isAddItem);
     }
-    deleteClicked(){
-        if(this.props.isAddItem){
+    deleteClicked() {
+        if (this.props.isAddItem) {
             this.setState({updating: false});
             return;
         }
-        if(this.state.updating){
+        if (this.state.updating) {
             this.updateDone();
             return;
         }
@@ -88,7 +88,7 @@ export class Item extends React.Component{
         if(this.props.isAddItem){
             return 'Add new...';
         }
-        return this.state.name;
+        return <span><i className="glyphicon glyphicon-chevron-right"></i>{this.state.name}</span>;
     }
     renderAmount(){
         if(this.state.updating){
@@ -101,7 +101,7 @@ export class Item extends React.Component{
         if(this.props.isAddItem){
             return null;
         }
-        return this.state.amount;
+        return <span><i className="glyphicon glyphicon-chevron-right"></i>{this.state.amount}</span>;
     }
     selectCategory(newCategory){
         this.setState({category: newCategory});
@@ -119,11 +119,7 @@ export class Item extends React.Component{
         if(this.props.isAddItem){
             return null;
         }
-        return (
-            <div className="col-xs-12 col-sm-4">
-                {this.state.category.default}
-            </div>
-        );
+        return <span className="semi-right"><i className="glyphicon glyphicon-chevron-right"></i>{this.state.category.default}</span>;
     }
     renderControl() {
         var btns = [];
@@ -166,13 +162,13 @@ export class Item extends React.Component{
                 onClick={this.props.isAddItem && !this.state.updating ? this.updateDone.bind(this) : null}
             >
                 <div className="row">
-                    <div className="col-xs-12 col-sm-4">
+                    <div className="col-xs-12 col-sm-4 alert-row">
                         {this.renderName()}
                     </div>
-                    <div className="col-xs-12 col-sm-2">
+                    <div className="col-xs-12 col-sm-3 alert-row">
                         {this.renderAmount()}
                     </div>
-                    <div className="col-xs-12 col-sm-4">
+                    <div className="col-xs-12 col-sm-3 alert-row">
                         {this.renderCategory()}
                     </div>
                     <div className="col-xs-12 col-sm-2">

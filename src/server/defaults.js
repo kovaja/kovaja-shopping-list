@@ -11,7 +11,7 @@ module.exports = {
             'order': 2
         },
         {
-            'default': 'Household goods',
+            'default': 'Households',
             'name': 'households',
             'order': 3
         },
@@ -25,13 +25,13 @@ module.exports = {
         {
             'username': 'jarda',
             'password': 'jarda',
-            'name': 'Jarda',
+            'name': 'Jarda Cicvárek',
             'lists': []
         },
         {
             'username': 'tonda',
             'password': 'tonda',
-            'name': 'Tonda',
+            'name': 'Tonda Vomáčka',
             'lists': []
         }
     ]

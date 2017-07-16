@@ -1,11 +1,11 @@
 import React from "react";
 
-export class Login extends React.Component{
+export class Login extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            username: 'jarda',
-            password: 'jarda'
+            username: '',
+            password: ''
         };
     }
     handleChange(event) {
@@ -24,7 +24,9 @@ export class Login extends React.Component{
                 <div className="col-md-4 col-md-offset-4">
                     <div className="login-panel panel panel-default">
                         <div className="panel-heading">
-                            <h3 className="panel-title">Please Sign In</h3>
+                            <div className="panel-label">
+                                <h3 className="panel-title">Please Sign In</h3>
+                            </div>
                         </div>
                         <div className="panel-body">
                             <form>
