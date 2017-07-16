@@ -1,0 +1,121 @@
+.App {
+    text-align: center;
+}
+.error {
+    font-size: 12px;
+    color: red;
+}
+.loading {
+    background-image: url('../img/loading.gif');
+    display: block;
+    width: 200px;
+    height: 200px;
+}
+
+.logout {
+    float:right;
+    cursor: pointer;
+}
+.logout .glyphicon-off:hover{
+    color: #d9534f;
+}
+
+#dashboard-wrapper {
+    padding: 0 15px;
+    min-height: 568px;
+    background-color: white;
+}
+@media (min-width: 768px) {
+    #dasboard-wrapper {
+        position: inherit;
+        margin: 0 0 0 250px;
+        padding: 0 30px;
+        border-left: 1px solid #e7e7e7;
+    }
+}
+a {
+    cursor: pointer;
+}
+.right {
+    float: right !important;
+}
+.panel i {
+    cursor: pointer;
+}
+.panel .glyphicon-ok:hover{
+    color: #5cb85c;
+}
+.panel .glyphicon-remove:hover{
+    color: #d9534f;
+}
+.panel .glyphicon-pencil:hover{
+    color: #5cb85c;
+}
+.panel-heading{
+    font-size: 16px;
+    height: 45px;
+}
+.panel-heading span {
+    float: right;
+    font-size: 19px;
+}
+.panel-heading span i{
+    margin-left: 10px;
+}
+.panel-body i {
+    font-size: 50px;
+}
+.panel-body .items {
+    text-align: right;
+}
+.panel-body .list-body {
+    cursor: pointer;
+}
+.panel-body .list-body:hover {
+    color: #0275d8;
+}
+.panel-body .items .items-number{
+    font-size: 25px;
+}
+.panel-body .items .items-label {
+    font-size: 13px;
+    font-style: italic;
+}
+
+.panel-footer {
+    font-size: 16px;
+    height: 46px;
+}
+
+.edit-list .panel-body {
+    cursor: pointer;
+    text-align: center;
+}
+.edit-list .panel-body:hover {
+    color: #5cb85c;
+} 
+.edit-list input {
+    height: 21px;
+    font-size: 10px;
+}
+.alert.new-item {
+    cursor: pointer
+}
+.alert.new-item:hover{
+    color: #5cb85c;
+}
+.alert i {
+    font-size:19px;
+    margin-left: 10px;
+}
+.alert .i
+
+.dropdown {
+    float:right !important;
+}
+.dropdown .btn {
+    width: 159px;
+}
+.dropdown .caret {
+    margin-left:10px;
+}
