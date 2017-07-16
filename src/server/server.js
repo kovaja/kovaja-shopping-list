@@ -7,8 +7,6 @@ var api = require('./api');
 var app = express();
 var port = process.env.PORT || 3001;
 
-var path = require('path');
-
 //db config
 mongoose.Promise = global.Promise;
 mongoose.connect('mongodb://kovaja:qeTaSr2j3mk@ds159892.mlab.com:59892/kovaja-shopping-list');
@@ -27,8 +25,9 @@ app.use(function (req, res, next) {
     next();
 });
 
-app.use(express.static(path.join(__dirname, 'build')));
-
+if (process.env.NODE_ENV === 'production') {
+    app.use(express.static('build'));
+}
 app.use('/api', api);
 
 app.listen(port, function () {
