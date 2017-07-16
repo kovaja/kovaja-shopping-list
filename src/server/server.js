@@ -5,7 +5,9 @@ var bodyParser = require('body-parser');
 var api = require('./api');
 
 var app = express();
-var port = process.env.API_PORT || 3001;
+var port = process.env.PORT || 3001;
+
+var path = require('path');
 
 //db config
 mongoose.Promise = global.Promise;
@@ -24,6 +26,8 @@ app.use(function (req, res, next) {
     res.setHeader('Cache-Control', 'no-cache');
     next();
 });
+
+app.use(express.static(path.join(__dirname, 'build')));
 
 app.use('/api', api);
 
