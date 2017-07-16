@@ -1,5 +1,5 @@
 # kovaja-shopping-list
-- Demo of shopping-list application usin MERN stack
+- Demo of shopping-list application using MERN stack
 - Fully responsive
 
 ### Live demo
