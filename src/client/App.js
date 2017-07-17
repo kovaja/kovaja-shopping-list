@@ -22,11 +22,6 @@ export default class App extends Component {
             loading: true,
             error: ''
         };
-        this.uiStates = {
-            LOADING: 1,
-            LOGIN: 2,
-            DASHBOARD: 3
-        };
     }
     componentDidMount() {
         this.setState({error: '', loading: true});
