@@ -12,8 +12,6 @@ import {Dashboard} from './containers/Dashboard';
 import {Error} from './components/Error';
 import {Loading} from './components/Loading';
 
-import './style.css';
-
 export default class App extends Component {
     constructor() {
         super();
