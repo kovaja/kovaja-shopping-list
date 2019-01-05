@@ -7,7 +7,7 @@ module.exports = {
     '/categories/all': {
         method: categoryModel.getAll
     },
-    '/user/get': {
+    '/login': {
         method: userModel.getOneByName,
         params: ['username', 'password']
     },
@@ -23,7 +23,7 @@ module.exports = {
         method: listModel.updateList,
         params: ['list_id', 'shop', 'date']
     },
-    '/list/all': {
+    '/list': {
         method: listModel.getUserLists,
         params: ['user_id']
     },

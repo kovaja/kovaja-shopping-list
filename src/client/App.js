@@ -12,7 +12,7 @@ import {Dashboard} from './containers/Dashboard';
 import {Error} from './components/Error';
 import {Loading} from './components/Loading';
 
-import './css/style.css';
+import './style.css';
 
 export default class App extends Component {
     constructor() {
@@ -113,7 +113,7 @@ export default class App extends Component {
                     </div>
                     <Error error={this.state.error} />
                     {this.renderLoading()}
-                    {this.renderContent()}           
+                    {this.renderContent()}
                 </div>
         );
     }

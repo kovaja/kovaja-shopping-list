@@ -11,19 +11,19 @@ html {
     text-align: center;
 }
 .loading {
-    background-image: url('../img/loading.gif');
+    background-image: url('./img/loading.gif');
     display: block;
     width: 200px;
     height: 200px;
 }
 #logo {
-    background-image: url('../img/cart.png');
+    background-image: url('./img/cart.png');
     display: block;
     width: 72px;
     height: 72px;
 }
 #logo-small {
-    background-image: url('../img/cart-small.png');
+    background-image: url('./img/cart-small.png');
     display: block;
     width: 32px;
     height: 32px;
@@ -85,7 +85,7 @@ a {
     }
 
     #logo-small {
-        background-image: url('../img/cart-small.png');
+        background-image: url('./img/cart-small.png');
         display: block;
         width: 32px;
         height: 32px;
@@ -174,7 +174,7 @@ a {
 }
 .edit-list .panel-body:hover {
     color: #5cb85c;
-} 
+}
 .edit-list input {
     height: 31px;
     font-size: 15px;

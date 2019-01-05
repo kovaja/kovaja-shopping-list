@@ -1,12 +1,10 @@
-//DEV
-//var API_URL = 'http://localhost:3001/api';
-//BUILD
-var API_URL = 'https://kovaja-shopping-list.herokuapp.com/api';
+var API_URL = '/api';
+
 export const apiUrls = {
     init: API_URL + '/',
     getCategories: API_URL + '/categories/all',
-    login: API_URL + '/user/get',
-    allLists: API_URL + '/list/all',
+    login: API_URL + '/login',
+    allLists: API_URL + '/list',
     newList: API_URL + '/list/new',
     deleteList: API_URL + '/list/delete',
     updateList: API_URL + '/list/update',

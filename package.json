@@ -2,26 +2,36 @@
   "name": "kovaja-shopping-list",
   "version": "0.1.0",
   "private": true,
-  "dependencies": {
-    "async": "^2.5.0",
-    "axios": "^0.16.2",
-    "body-parser": "^1.17.2",
-    "express": "^4.15.3",
-    "foreman": "^2.0.0",
-    "marked": "^0.3.6",
-    "moment": "^2.18.1",
-    "mongoose": "^4.11.2",
-    "nodemon": "^1.11.0",
-    "react": "^15.6.1",
-    "react-datepicker": "^0.52.0",
-    "react-dom": "^15.6.1",
-    "react-scripts": "1.0.10"
-  },
   "scripts": {
     "start": "node ./src/server/server.js",
-    "start-dev": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
+    "postinstall": "npm run client:prod",
+    "server:dev": "nodemon ./src/server/server.js",
+    "client:dev": "webpack --mode development",
+    "client:prod": "webpack --mode production"
+  },
+  "dependencies": {
+    "axios": "^0.18.0",
+    "body-parser": "^1.18.3",
+    "express": "^4.16.3",
+    "moment": "^2.18.1",
+    "mongoose": "^5.2.12",
+    "react": "^16.4.2",
+    "react-datepicker": "^2.0.0",
+    "react-dom": "^16.4.2"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.0.0",
+    "@babel/preset-env": "^7.0.0",
+    "@babel/preset-react": "^7.0.0",
+    "babel-loader": "^8.0.2",
+    "css-loader": "^1.0.0",
+    "eslint": "^5.5.0",
+    "eslint-plugin-react": "^7.11.1",
+    "html-loader": "^0.5.5",
+    "html-webpack-plugin": "^3.2.0",
+    "nodemon": "^1.18.3",
+    "url-loader": "^1.1.2",
+    "webpack": "^4.17.1",
+    "webpack-cli": "^3.1.0"
   }
 }
