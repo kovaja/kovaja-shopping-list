@@ -1,6 +1,5 @@
 const HtmlWebPackPlugin = require("html-webpack-plugin");
-
-console.log('KUBA', __dirname+ '/public');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 module.exports = {
   entry: './src/client/index.js',
@@ -39,6 +38,11 @@ module.exports = {
     new HtmlWebPackPlugin({
       template: "./src/client/index.html",
       filename: "./index.html"
-    })
+    }),
+    new CopyWebpackPlugin([
+      { from: './src/client/style.css', to: '.' },
+      { from: './src/client/index.css', to: '.' },
+      { from: './src/client/img/', to: './img' }
+    ], {debug: 'info'})
   ]
 };
