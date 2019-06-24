@@ -3,7 +3,7 @@ var userModel = require('./models/userModel');
 var listModel = require('./models/listModel');
 var itemModel = require('./models/itemModel');
 
-module.exports = {
+module.exports = Object.freeze({
     '/categories/all': {
         method: categoryModel.getAll
     },
@@ -52,4 +52,4 @@ module.exports = {
             ]);
         }
     }
-};
+});

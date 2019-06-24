@@ -9,7 +9,10 @@ const BUILD_PATH = path.join(__dirname, '../../public/');
 
 //db config
 mongoose.Promise = global.Promise;
-mongoose.connect('mongodb://kovaja:qeTaSr2j3mk@ds159892.mlab.com:59892/kovaja-shopping-list');
+
+mongoose.connect('mongodb://app:d32e32dwqd32d@ds159892.mlab.com:59892/kovaja-shopping-list')
+.then(() => console.log('Database connected'))
+.catch(e => console.log('Database connection error\n', e));
 
 const bodyParserJson = bodyParser.json();
 const app = express();

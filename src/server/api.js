@@ -1,36 +1,58 @@
-const callDefinitions = require('./callDefinitions');
+const methodsDefinitons = require('./methodsDefinitions');
+
+const isValidPostMethod = (method) => {
+    return method && method.method && method.params;
+};
+
+const isValidGetMethod = (method) => {
+    return method && method.method
+}
+
+const sendNotFound = (res, url) => {
+    const body = {
+        result: 1,
+        message: 'UNKNOWN URL ' + url
+    };
+
+    res.status(404).json(body);
+};
+
+const sendBadRequest = (res) => {
+    const body = {
+        result: 1,
+        message: 'MALICIOUS REQUEST PARAMS'
+    };
+
+    res.status(400).json(body);
+};
+
+const getParams = (req, method) => {}
 
 const initalizeRouter = (express) => {
     const router = express.Router();
 
-    router.post('*', function (req, res) {
-        var call = callDefinitions[req.url];
+    router.post('*', (req, res) => {
+        const method = methodsDefinitons[req.url];
 
-        if (!call || !call.method || !call.params) {
-            res.status(404).json({
-                result: 1,
-                message: 'UNKNOWN URL ' + req.url
-            });
+        if (!isValidPostMethod(method)) {
+            sendNotFound(res, req.url);
             return;
         }
 
         var params = {};
 
-        call.params.forEach(function (key) {
+        method.params.forEach((key) => {
             if (req.body.hasOwnProperty(key)) {
                 params[key] = req.body[key];
             }
         });
 
-        if (Object.keys(params).length !== call.params.length) {
-            res.status(400).json({
-                result: 1,
-                message: 'MALICIOUS REQUEST PARAMS'
-            });
+        if (Object.keys(params).length !== method.params.length) {
+            sendBadRequest(res);
             return;
         }
 
-        call.method(params)
+        method.method(params)
                 .then(function (data) {
                     res.status(200).json({
                         result: 0,
@@ -47,17 +69,14 @@ const initalizeRouter = (express) => {
     });
 
     router.get('*', function (req, res) {
-        var call = callDefinitions[req.url];
+        const method = methodsDefinitons[req.url];
 
-        if (!call || !call.method) {
-            res.status(404).json({
-                result: 1,
-                message: 'UNKNOWN URL ' + req.url
-            });
+        if (!isValidGetMethod(method)) {
+            sendNotFound(res, req.url);
             return;
         }
 
-        call.method()
+        method.method()
                 .then(function (data) {
                     res.status(200).json({
                         result: 0,
