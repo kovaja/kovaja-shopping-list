@@ -1,16 +1,15 @@
-import React, { Component }
-from 'react';
+import React, { Component } from 'react';
+import { ApiCalls } from './apiCalls';
+import { apiUrls } from './apiUrls';
+import { Error } from './components/Error';
+import { Loading } from './components/Loading';
+import { Dashboard } from './containers/Dashboard';
+import { Login } from './containers/Login';
 
 
-import {apiUrls} from './apiUrls';
-import {ApiCalls} from './apiCalls';
 
 
-import {Login} from './containers/Login';
-import {Dashboard} from './containers/Dashboard';
 
-import {Error} from './components/Error';
-import {Loading} from './components/Loading';
 
 export default class App extends Component {
     constructor() {
